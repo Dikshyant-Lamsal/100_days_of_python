@@ -2,6 +2,31 @@ import random
 user_win_count=0;
 comp_win_count=0;
 choice = 'y'  
+rock="""
+        _______
+    ---'   ____)
+        (_____)
+        (_____)
+        (____)
+    ---.__(___)
+    """
+
+scissor="""
+        _______
+    ---'   ____)____
+            ______)
+        __________)
+        (____)
+    ---.__(___)
+    """
+paper="""
+        _______
+    ---'    ____)____
+            ______)
+            _______)
+            _______)
+    ---.__________)
+    """
 
 while (choice.lower() == 'y'):
     user_choice = int(input("What do you want to choose? Type 0 for Rock, 1 for Paper, or 2 for Scissors\n"))
@@ -34,61 +59,19 @@ while (choice.lower() == 'y'):
 
     print("You Chose: ")
     if user_choice == 0:
-        print("""
-        _______
-    ---'   ____)
-        (_____)
-        (_____)
-        (____)
-    ---.__(___)
-    """)
+        print(rock)
     elif user_choice == 1:
-        print("""
-        _______
-    ---'    ____)____
-            ______)
-            _______)
-            _______)
-    ---.__________)
-    """)
+        print(paper)
     else:
-        print("""
-        _______
-    ---'   ____)____
-            ______)
-        __________)
-        (____)
-    ---.__(___)
-    """)
+        print(scissor)
 
     print("Computer Chose: ")
     if comp_choice == 0:
-        print("""
-        _______
-    ---'   ____)
-        (_____)
-        (_____)
-        (____)
-    ---.__(___)
-    """)
+        print(rock)
     elif comp_choice == 1:
-        print("""
-        _______
-    ---'    ____)____
-            ______)
-            _______)
-            _______)
-    ---.__________)
-    """)
+        print(paper)
     else:
-        print("""
-        _______
-    ---'   ____)____
-            ______)
-        __________)
-        (____)
-    ---.__(___)
-    """)
+        print(scissor)
 
     if res.lower() == "draw":
         print("DRAW\n")
