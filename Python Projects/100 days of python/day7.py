@@ -9,15 +9,14 @@ placeholder=""
 for i in range(len(chosen_word)):
     placeholder+="_"
 
+guess = input("Guess a letter: ").lower()
 
-guess=input("Guess a Letter: ").lower()
 display=""
+
 for letter in chosen_word:
-        if guess==letter:
-            display+=guess
-            flag=1
-        else:
-            display+="_"
+    if letter == guess:
+        display += letter
+    else:
+        display += "_"
+
 print(display)
-    
-        
