@@ -1,18 +1,43 @@
-print("Ceaser Cypher, Day 8!")
+logo = """           
+ ,adPPYba, ,adPPYYba,  ,adPPYba, ,adPPYba, ,adPPYYba, 8b,dPPYba,  
+a8"     "" ""     `Y8 a8P_____88 I8[    "" ""     `Y8 88P'   "Y8  
+8b         ,adPPPPP88 8PP"""""""  `"Y8ba,  ,adPPPPP88 88          
+"8a,   ,aa 88,    ,88 "8b,   ,aa aa    ]8I 88,    ,88 88          
+ `"Ybbd8"' `"8bbdP"Y8  `"Ybbd8"' `"YbbdP"' `"8bbdP"Y8 88   
+            88             88                                 
+           ""             88                                 
+                          88                                 
+ ,adPPYba, 88 8b,dPPYba,  88,dPPYba,   ,adPPYba, 8b,dPPYba,  
+a8"     "" 88 88P'    "8a 88P'    "8a a8P_____88 88P'   "Y8  
+8b         88 88       d8 88       88 8PP""""""" 88          
+"8a,   ,aa 88 88b,   ,a8" 88       88 "8b,   ,aa 88          
+ `"Ybbd8"' 88 88`YbbdP"'  88       88  `"Ybbd8"' 88          
+              88                                             
+              88           
+"""
+
+print(logo)
 
 def encode(message):
-    message_list=list(message)
     shift_encode=int(input("Enter the shift amount: "))%26;
     encoded_message=""
-    for letter in message_list:
-        if(letter.isupper()and (ord(letter)+shift_encode)<=ord("Z")):
-                encoded_message+=chr((ord(letter)+shift_encode))
+
+    for letter in list(message):
+
+        if(not(letter.isalpha())):
+             encoded_message+=letter
+
+        elif(letter.isupper()and (ord(letter)+shift_encode)<=ord("Z")):
+             encoded_message+=chr((ord(letter)+shift_encode))
+        
         elif(letter.isupper()):
-                encoded_message+=chr((ord(letter)+shift_encode)-26)
+             encoded_message+=chr((ord(letter)+shift_encode)-26)
+        
         elif(letter.islower() and ord(letter)+shift_encode)<=ord("z"):
-                encoded_message+=chr((ord(letter)+shift_encode))
+             encoded_message+=chr((ord(letter)+shift_encode))
+        
         elif(letter.islower()):
-                encoded_message+=chr((ord(letter)+shift_encode)-26)
+             encoded_message+=chr((ord(letter)+shift_encode)-26)
         else:
             print("Invalid Character!")
         
@@ -22,10 +47,14 @@ def encode(message):
 
 def decode(message_to_decode):
     shift_decode=int(input("Enter the shift amount "))%26;
-    decode_message_list=list(message_to_decode)
     decoded_message=""
-    for letter in decode_message_list:
-        if(letter.isupper() and (ord(letter)-shift_decode)>=ord("A")):
+
+    for letter in list(message_to_decode):
+        
+        if(not(letter.isalpha())):
+             decoded_message+=letter
+        
+        elif(letter.isupper() and (ord(letter)-shift_decode)>=ord("A")):
             decoded_message+=chr((ord(letter)-shift_decode))
 
         elif(letter.isupper()):
@@ -41,6 +70,7 @@ def decode(message_to_decode):
             print("Invalid Character!")
             
     print(f"Decoded Message: {decoded_message}")
+
 
 run=True
 while(run):
