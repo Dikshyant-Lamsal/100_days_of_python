@@ -16,7 +16,7 @@ logo = r"""
 |_____________________|
 """
 system("clear")
-print(logo)
+
 a=0.0
 b=0.0
 def addition(a,b):
@@ -35,34 +35,37 @@ def division(a,b):
         print("Cannot Divide by Zero!!")
         exit(0)
 
-calculate=True
-choice="n"
-while(calculate):
-    num1=0.0
-    if (choice.lower()=="y"):
-        num1=res
-        calculate=True
-    else:
-        num1=float(input("Enter number 1: "))
-    choice_1=(input("+\n-\n*\n/\n\nPick an operation: "))
-    num2=float(input("Enter number 2: "))
+def calculator():
+    calculate=True
+    print(logo)
+    num1=float(input("Enter number 1: "))
+    while(calculate):
+        choice_1=(input("+\n-\n*\n/\nPick an operation: "))
+        num2=float(input("Enter number 2: "))
 
-    if(choice_1=="+"):
-        res=addition(num1,num2)
-        print("Sum: ",res)
-    elif(choice_1=="-"):
-        res=subtraction(num1,num2)
-        print("Difference: ",res)
-    elif(choice_1=="/"):
-        res=division(num1,num2)
-        print("Quotient: ",res)
-    elif(choice_1=="*"):
-        res=multiplication(num1,num2)
-        print("Product: ",res)
-    else:
-        print("Invalid Choice!")
+        if(choice_1=="+"):
+            res=addition(num1,num2)
+            print("Sum: ",res)
+        elif(choice_1=="-"):
+            res=subtraction(num1,num2)
+            print("Difference: ",res)
+        elif(choice_1=="/"):
+            res=division(num1,num2)
+            print("Quotient: ",res)
+        elif(choice_1=="*"):
+            res=multiplication(num1,num2)
+            print("Product: ",res)
+        else:
+            print("Invalid Choice!")
+            
+        choice=input(f"Do you want to continue with {res} or start a new calculation? Type \"y\" to continue \"n\" for new calculation. ")
         
-    choice=input(f"Do you want to continue with {res} or start a new calculation? Type \"y\" to continue \"n\" for new calculation. ")
-        
+        if (choice.lower()=="y"):
+            num1=res
+            calculate=True
+        else:
+            calculate=False
+            calculator()
 
+calculator()
 
