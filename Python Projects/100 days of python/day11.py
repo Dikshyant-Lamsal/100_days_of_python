@@ -45,9 +45,9 @@ def compare(deck1, deck2):
 
     if score1 == score2:
         print("DRAW!")
-    elif score1 == 0 or score2 > 21:
+    elif score1 == 0 or score2 > 21 or score1==21:
         print("USER WINS!")
-    elif score2 == 0 or score1 > 21:
+    elif score2 == 0 or score1 > 21 or score2==21:
         print("COMP WINS")
     elif score1 > score2:
         print("USER WINS")
