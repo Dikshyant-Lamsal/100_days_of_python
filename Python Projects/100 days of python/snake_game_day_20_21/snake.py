@@ -2,8 +2,10 @@ from turtle import Turtle,Screen
 import time
 
 class Snake:
+    
     t_list=[]
     x_cor=0
+    
     
     def __init__(self):
         self.create_initial_snake()
@@ -16,6 +18,7 @@ class Snake:
             self.t_name.goto(self.x_cor,0)
             self.t_list.append(self.t_name)
             self.x_cor-=20
+            self.head=self.t_list[0]
             
     def move_forward(self,speed):
         for seg_num in range(len(self.t_list)-1,0,-1):
@@ -45,3 +48,13 @@ class Snake:
             self.t_list[seg_num].goto(self.t_list[seg_num-1].xcor(),self.t_list[seg_num-1].ycor())
         if (self.t_list[0].heading()!=90):
             self.t_list[0].setheading(270)
+    
+    def add_segment(self,position):
+        self.t_name = Turtle(shape='square')
+        self.t_name.color('white')
+        self.t_name.penup()
+        self.t_name.goto(position)
+        self.t_list.append(self.t_name)
+        
+    def grow_snake(self):
+        self.add_segment(self.t_list[-1].position())
