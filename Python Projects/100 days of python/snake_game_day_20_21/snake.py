@@ -58,3 +58,10 @@ class Snake:
         
     def grow_snake(self):
         self.add_segment(self.t_list[-1].position())
+        
+    def reset(self):
+        for segment in self.t_list:
+            segment.goto(1000,1000)
+        self.t_list.clear()
+        self.create_initial_snake()
+        self.head=self.t_list[0]
