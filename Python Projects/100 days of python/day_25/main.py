@@ -1,5 +1,6 @@
 import pandas
 data=pandas.read_csv("weather_data.csv")
+<<<<<<< HEAD
 # print(data)
 # print(data.columns)
 
@@ -20,3 +21,6 @@ data_dict={
 d=pandas.DataFrame(data_dict)
 print(d)
 d.to_csv("newdata.csv")
+=======
+print(data["temp"])
+>>>>>>> fb7a3bafb62c27db8bfc9a031a13495bd379f315
