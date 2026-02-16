@@ -1,26 +1,31 @@
 import pandas
-data=pandas.read_csv("weather_data.csv")
-<<<<<<< HEAD
-# print(data)
-# print(data.columns)
+data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
+colors = []
 
-# data_dict = data.to_dict()
+for color in data["Primary Fur Color"]:
+    if color not in colors and color != "nan":
+        colors.append(color)
 
-# print(data_dict)
+colors = colors[1:]
 
-# print(data[data.temp>=data.temp.mean()].condition)
+def count_color(color):
+    color_count = len(data[data["Primary Fur Color"] == color])
+    return color_count
 
-# monday=data[data.day=="Monday"]
-# print((monday.temp[0]*1.8)+32)
+final_data = []; 
+squirrels_data = {"id":0,"color":"","count":0}
 
-data_dict={
-    "students":["a","b","c"],
-    "score":[10,12,15]
-}
+for color in colors:
+    squirrels_data["id"] += 1
+    squirrels_data["color"] = color
+    squirrels_data["count"] = count_color(color)
+    final_data.append(squirrels_data.copy())
+       
+for data in final_data:
+    print(data)
 
-d=pandas.DataFrame(data_dict)
-print(d)
-d.to_csv("newdata.csv")
-=======
-print(data["temp"])
->>>>>>> fb7a3bafb62c27db8bfc9a031a13495bd379f315
+try:
+    df = pandas.DataFrame(final_data)
+    df.to_csv("squirrels_count.csv", index=False)
+except Exception as e:
+    print("Error: ", e) 
