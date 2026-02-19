@@ -40,10 +40,8 @@ while True:
         count+=1
         guessed_states.append(state.lower())
 
-rem_states = []
-for state in states["name"]:
-    if state not in guessed_states:
-        rem_states.append(state)
+rem_states = [state for state in states["name"] if state not in guessed_states]
+
 
 states_to_learn = pandas.DataFrame(rem_states)
 states_to_learn.to_csv("states_to_learn.csv")
