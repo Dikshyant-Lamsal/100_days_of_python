@@ -5,6 +5,7 @@
         "padx",
         "pady",
         "Pomodoro",
+        "searchfile",
         "textvariable"
     ]
 }

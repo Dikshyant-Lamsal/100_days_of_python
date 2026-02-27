@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import secrets
 import string
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password(length=12):
@@ -23,12 +24,24 @@ def save_password():
     elif website.lower() in (open("passwords.txt").read().lower()):
         messagebox.showinfo(title="Oops", message="Website already exists.")
     else:
-        with open("passwords.txt", "a") as f:
-            f.write(f"{website} | {email} | {password}\n")
+        with open("passwords.json", "w") as f:
+            json.dump({website: {"email": email, "password": password}}, f, indent=4)
         messagebox.showinfo(title="Success", message=f"Password:'{password}' for Website: '{website}' saved successfully.")
         website_entry.delete(0, END)
         password_entry.delete(0, END)
 
+
+def searchfile():
+    website = website_entry.get()
+    try:
+        with open("passwords.json", "r") as f:
+            data = json.load(f)
+        if website in data:
+            messagebox.showinfo(title="Search Result", message=f"Email: {data[website]['email']}\nPassword: {data[website]['password']}")
+        else:
+            messagebox.showinfo(title="Search Result", message=f"No details for '{website}' exists.")
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error", message="No passwords file exists.")
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
@@ -50,6 +63,9 @@ email_label.grid(row=3,column=0)
 email_entry = Entry(width=35)
 email_entry.insert(0,"dikshyant01@gmail.com")
 email_entry.grid(row=3,column=1,columnspan=2,padx=20,pady=5)
+
+search_btn = Button(text="Search",command=searchfile)
+search_btn.grid(row=2,column=2,padx=20,pady=15)
 
 password_label = Label(text="Password:")
 password_label.grid(row=4,column=0)
