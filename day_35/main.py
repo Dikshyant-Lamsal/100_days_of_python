@@ -27,9 +27,8 @@ data_list = data["list"]
 def will_rain():
     for i in range(0, 4):
         print(data_list[i]["weather"])
-        weather_id = data_list[i]["weather"][0]["description"]
-        print(weather_id)
-        if weather_id == "rain":
+        weather_id = data_list[i]["weather"][0]["id"]
+        if weather_id < 700:
             return True
     return False
 
