@@ -10,7 +10,6 @@ lat = geocoder.ip('me').latlng[0]
 lon = geocoder.ip('me').latlng[1]
 
 api_key = {os.getenv("api_key")}
-print(api_key)
 open_weather_params = {
     "lat": lat,
     "lon": lon,
@@ -25,9 +24,8 @@ data_list = data["list"]
 
 
 def will_rain():
-    for i in range(0, 4):
-        print(data_list[i]["weather"])
-        weather_id = data_list[i]["weather"][0]["id"]
+    for hour in data_list:
+        weather_id = hour["weather"][0]["id"]
         if weather_id < 700:
             return True
     return False
@@ -35,4 +33,4 @@ def will_rain():
 if will_rain():
     print("Bring an umbrella.")
 else:
-    print("No rain today.")
+    print("No rain today for the next 12 hours!")
