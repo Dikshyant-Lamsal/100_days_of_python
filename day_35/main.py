@@ -3,6 +3,7 @@ import datetime
 import geocoder
 from dotenv import load_dotenv
 import os
+from twilio.rest import Client
 
 load_dotenv()
 
@@ -32,5 +33,21 @@ def will_rain():
 
 if will_rain():
     print("Bring an umbrella.")
+    account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+    auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+    client = Client(account_sid, auth_token)
+    sender_no = os.getenv("TWILIO_PHONE_NUMBER")
+    receiver_no = os.getenv("RECEIVER_PHONE_NUMBER")
+    message = client.messages.create(
+        from_=sender_no,
+        to=receiver_no,
+        body="It will rain today within the next 12 hours. Don't forget to bring an umbrella!",
+        )   
+    print(message)
 else:
     print("No rain today for the next 12 hours!")
+
+
+
+
+
