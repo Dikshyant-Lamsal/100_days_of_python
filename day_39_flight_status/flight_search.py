@@ -55,7 +55,7 @@ class FlightSearch:
         headers = {"Authorization": f"Bearer {self.access_token}"}
         cheapest = None
 
-        for days_ahead in range(1, 180, 3):
+        for days_ahead in range(1, 180, 30):
             check_date = (datetime.today() + timedelta(days=days_ahead)).strftime("%Y-%m-%d")
             params = {
                 "originLocationCode": self.origin,

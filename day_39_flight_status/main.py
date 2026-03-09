@@ -23,7 +23,7 @@ def update_base_price():
     for city in flight_data.cities:
         if not flight_data.lowest_prices[city]:
             iata_code = flight_data.city_codes[city]
-            price = flight_search.get_price(iata_code=iata_code, price_type="base")
+            price = flight_search.get_price(iata_code=iata_code, price_type="grandTotal")
             data_manager.set_initial_price(
                 row=flight_data.cities.index(city) + 2,
                 price=price
