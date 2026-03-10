@@ -1,0 +1,102 @@
+ID    TITLE
+--------------------------------------------------
+1     Stand By Me                                       
+2     Raging Bull                                       
+3     Amelie                                            
+4     Titanic [WATCHED]
+5     Good Will Hunting                                 
+6     Arrival                                           
+7     Lost In Translation                               
+8     The Princess Bride                                
+9     The Terminator                                    
+10    The Prestige                                      
+11    No Country For Old Men                            
+12    Shaun Of The Dead                                 
+13    The Exorcist                                      
+14    Predator                                          
+15    Indiana Jones And The Last Crusade                
+16    Léon                                              
+17    Rocky                                             
+18    True Romance                                      
+19    Some Like It Hot                                  
+20    The Social Network                                
+21    Spirited Away                                     
+22    Captain America: Civil War                        
+23    Oldboy                                            
+24    Toy Story                                         
+25    A Clockwork Orange                                
+26    Fargo                                             
+27    Mulholland Dr.                                    
+28    Seven Samurai                                     
+29    Rear Window                                       
+30    Hot Fuzz                                          
+31    The Lion King                                     
+32    Singin' In The Rain                               
+33    Ghostbusters                                      
+34    Memento                                           
+35    Return Of The Jedi                                
+36    Avengers Assemble                                 
+37    L.A. Confidential                                 
+38    Donnie Darko                                      
+39    La La Land                                        
+40    Forrest Gump [WATCHED]                                      
+41    American Beauty                                   
+42    E.T. – The Extra Terrestrial                      
+43    Inglourious Basterds                              
+44    Whiplash                                          
+45    Reservoir Dogs                                    
+46    Pan's Labyrinth                                   
+47    Vertigo                                           
+48    Psycho                                            
+49    Once Upon A Time In The West                      
+50    It's A Wonderful Life                             
+51    Lawrence Of Arabia                                
+52    Trainspotting                                     
+53    The Silence Of The Lambs                          
+54    Interstellar                                      
+55    Citizen Kane                                      
+56    Drive                                             
+57    Gladiator                                         
+58    One Flew Over The Cuckoo's Nest                   
+59    There Will Be Blood                               
+60    Eternal Sunshine Of The Spotless Mind             
+61    12 Angry Men                                      
+62    Saving Private Ryan                               
+63    Mad Max: Fury Road                                
+64    The Thing                                         
+65    The Departed                                      
+66    The Shining                                       
+67    Guardians Of The Galaxy                           
+68    Schindler's List                                  
+69    The Usual Suspects                                
+70    Taxi Driver                                       
+71    Seven                                             
+72    The Big Lebowski                                  
+73    Casablanca                                        
+74    The Good, The Bad And The Ugly                    
+75    Heat                                              
+76    Terminator 2: Judgment Day                        
+77    The Matrix                                        
+78    The Lord Of The Rings: The Two Towers             
+79    Apocalypse Now                                    
+80    2001: A Space Odyssey                             
+81    Die Hard                                          
+82    Jurassic Park                                     
+83    Inception                                         
+84    Fight Club                                        
+85    The Lord Of The Rings: The Return Of The King     
+86    Aliens                                            
+87    Alien                                             
+88    Blade Runner                                      
+89    12: The Godfather Part II                         
+90    Back To The Future                                
+91    The Lord Of The Rings: The Fellowship Of The Ring 
+92    Star Wars                                         
+93    Jaws                                              
+94    Raiders Of The Lost Ark                           
+95    Goodfellas                                        
+96    Pulp Fiction                                      
+97    The Shawshank Redemption                          
+98    The Dark Knight                                   
+99    The Empire Strikes Back                           
+100   The Godfather                                     
