@@ -13,7 +13,15 @@ def fetch_blogs():
 @app.route('/', methods=["GET"])
 def home():
     fetch_blogs()
-    return render_template("index.html", blogs=blogs)
+    return render_template("index.html",blogs=blogs)
+
+@app.route('/about', methods=["GET"])
+def get_about():
+    return render_template("about.html")
+                           
+@app.route('/contact', methods=["GET"])
+def get_contact():
+    return render_template("contact.html")
 
 @app.route("/blogs/<int:id>", methods=["GET"])
 def get_blog(id):
@@ -22,6 +30,6 @@ def get_blog(id):
     if blog is None:
         return "Blog not found", 404
     return render_template("post.html", blog=blog)
-
-if __name__ == "__main__":
+    
+if __name__=="__main__":
     app.run(debug=True)
