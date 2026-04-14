@@ -9,20 +9,24 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
 
 # CREATE DATABASE
-
-
 class Base(DeclarativeBase):
     pass
-
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
-# CREATE TABLE IN DB
+# Configure Flask-Login's Login Manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+# Create a user_loader callback
+@login_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(User, user_id)
 
 
-class User(db.Model):
+# CREATE TABLE IN DB with the UserMixin
+class User(UserMixin, db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String(100), unique=True)
     password: Mapped[str] = mapped_column(String(100))
@@ -33,57 +37,75 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/',methods={"GET"})
+@app.route('/')
 def home():
     return render_template("index.html")
 
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
-    if request.method == "GET":
-        return render_template("register.html")
-    elif request.method == "POST":
-        user = User(
-            email=request.form.get("email"),
-            password=generate_password_hash(request.form.get("password"), method='pbkdf2:sha256', salt_length=8),
-            name=request.form.get("name")
+    if request.method == "POST":
+        hash_and_salted_password = generate_password_hash(
+            request.form.get('password'),
+            method='pbkdf2:sha256',
+            salt_length=8
         )
-        db.session.add(user)
+        new_user = User(
+            email=request.form.get('email'),
+            name=request.form.get('name'),
+            password=hash_and_salted_password,
+        )
+
+        db.session.add(new_user)
         db.session.commit()
-        return render_template('secrets.html', username=user.name)
+
+        # Log in and authenticate user after adding details to database.
+        login_user(new_user)
+
+        # Can redirect() and get name from the current_user
+        return redirect(url_for("secrets"))
+
+    return render_template("register.html")
 
 
-
-@app.route('/login',methods=["GET", "POST"])
+@app.route('/login', methods=["GET", "POST"])
 def login():
-    if request.method == "GET":
-        return render_template("login.html")
-    elif request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
-        user = User.query.filter_by(email=email).first()
-        if user and check_password_hash(user.password, password):
+    if request.method == "POST":
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Find user by email entered.
+        result = db.session.execute(db.select(User).where(User.email == email))
+        user = result.scalar()
+
+        # Check stored password hash against entered password hashed.
+        if check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('secrets'))
-        else:
-            flash("Invalid email or password.")
-            return redirect(url_for('login'))
+
+    return render_template("login.html")
 
 
-@app.route('/secrets',methods={"GET","POST"})
+# Only logged-in users can access the route
+@app.route('/secrets')
+@login_required
 def secrets():
-    return render_template("secrets.html")
+    print(current_user.name)
+    # Passing the name from the current_user
+    return render_template("secrets.html", name=current_user.name)
 
 
-@app.route('/logout', methods=["GET"])
+@app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
 
-@app.route('/download', methods=["GET"])
+# Only logged-in users can down download the pdf
+@app.route('/download', methods=['POST'])
+@login_required
 def download():
-    return send_from_directory('static/files', 'cheat_sheet.pdf')
+    return send_from_directory('static', path="files/cheat_sheet.pdf")
 
 
 if __name__ == "__main__":
